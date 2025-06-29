@@ -13,9 +13,13 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   profileImage: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
+    width: 110,
+    height: 110,
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: 'green', // Change color as needed
+    backgroundColor: '#fff', // Optional for contrast
+    overflow: 'hidden',
   },
   profileName: {
     marginTop: 12,

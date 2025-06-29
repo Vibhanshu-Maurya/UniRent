@@ -1,7 +1,7 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
 import { HomeView } from "./RoomListView";
-import { HomeNavBar } from "../Search/HomeNavBar";
+import { HomeNavBar } from "./HomeNavBar";
 // import { Ccategory } from "../Categories/CategoryScreen";
 
 const Home = () => {

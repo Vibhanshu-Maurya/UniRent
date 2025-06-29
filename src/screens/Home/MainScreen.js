@@ -4,7 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeStack from './HomeStack';
 import ExploreScreen from '../Explore/ExploreScreen';
 import BookingScreen from '../Bookings/BookingScreen';
-import AccountScreen from '../Profile/AccountScreen';
+// import AccountScreen from '../Profile/AccountScreen';
+import AccountStack from '../Profile/AccountStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,8 +34,13 @@ const MainScreen = () => {
     >
       <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Location" component={ExploreScreen} />
-      <Tab.Screen name="Booking" component={BookingScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
+      <Tab.Screen name="Booking" component={BookingScreen} 
+        // options={{
+        //   tabBarBadge: 3, // Example badge count
+        //   tabBarBadgeStyle: { backgroundColor: '#FF5722', color: 'white', }
+        // }}
+      />
+      <Tab.Screen name="Account" component={AccountStack} />
     </Tab.Navigator>
   );
 };
