@@ -7,42 +7,19 @@ const Splash = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       // setIsTouchable(true);
-      navigation.replace('MainScreen');  
+      navigation.replace('SignInScreen');
     }, 1000);
     return () => clearTimeout(timer); 
   }, []);
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-
       <Image
-        // source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4jaGUCbhD4Ct6ibmvC_3leOPiLdmjS6fNiQ&s' }}
         source={require('../../../assets/SystemImages/roomIcon.png')}
         style={styles.splashImage}
       />
-
-      {
-        // !isTouchable && 
-        (
-          <ActivityIndicator size="large" color="#0000ff" style={{ marginBottom: 20 }} />
-        )
-
-      }
-
-
-      {/* <TouchableOpacity
-        disabled={!isTouchable}
-        onPress={() => navigation.navigate('MainScreen')}
-        style={{
-          backgroundColor: isTouchable ? 'orange' : 'gray',
-          padding: 15,
-          borderRadius: 10,
-        }}
-      >
-        <Text style={styles.splashText}>
-          {isTouchable ? 'UniRent' : 'Please wait...'}
-        </Text>
-      </TouchableOpacity> */}
+      <Text style={styles.splashText}>UniRent</Text>
+      <ActivityIndicator size="large" color="#0000ff" style={{ marginTop: 20 }} />
     </View>
   );
 }
@@ -56,9 +33,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'none'
   },
   splashText: {
-    color: 'white',
+    color: 'orange',
     fontSize: 30,
-    fontWeight: '600',
+    fontWeight: '900',
   }
 })
 

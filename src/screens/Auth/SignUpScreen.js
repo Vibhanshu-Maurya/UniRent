@@ -7,9 +7,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'; // import check icon
-import { Styles } from './StylesSignUp';
+import { Styles } from '../../styles/SignUpStyles';
+import { useNavigation } from '@react-navigation/native';
 
-const SignUp = () => {
+const SignUpScreen = () => {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -88,12 +91,17 @@ const SignUp = () => {
         }}
         disabled={!agree}
       >
-        <Text style={Styles.buttonText}>Sign Up</Text>
+        <Text style={Styles.buttonText}
+          onPress={() => navigation.navigate('SignInScreen')}
+        >Sign Up</Text>
       </TouchableOpacity>
 
       <Text style={Styles.lastFirstText}>
         Already have an account?{' '}
-        <Text style={Styles.lastSecondText}>Sign In</Text>
+        <Text
+          style={styles.registerText}
+          onPress={() => navigation.navigate('SignInScreen')}
+        >Sign In</Text>
       </Text>
     </View>
   );
@@ -124,6 +132,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#333',
   },
+  registerText: {
+    color: 'green',
+    textDecorationLine: 'underline',
+    textDecorationColor: 'green',
+    fontWeight: '700',
+  },
 });
 
-export default SignUp;
+
+export default SignUpScreen;

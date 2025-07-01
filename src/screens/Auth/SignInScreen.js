@@ -1,22 +1,42 @@
 import React, { useState } from 'react';
-import {Button,Image,Text,View,StyleSheet,TextInput,TouchableOpacity} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Styles } from './StylesSignIn';
+import {
+  Image,
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator, // Import ActivityIndicator
+} from 'react-native';
+import { Styles } from '../../styles/SignInStyles';
+import { useNavigation } from '@react-navigation/native';
 // import IMAGES from './IMAGES';
 
-
-const Stack = createNativeStackNavigator();
-
-const SignIn = (props) => {
+const SignInScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // Add loading state
+  const navigation = useNavigation();
+
+  const handleSignIn = () => {
+    // Add real authentication logic here
+    if (email && password) {
+      setLoading(true); // Start loading
+      setTimeout(() => {
+        setLoading(false);
+        navigation.replace('MainScreen');
+      }, 3000); // 3 seconds delay
+    } else {
+      alert('Please fill in both fields');
+    }
+  };
+  
   return (
-    <View> 
+    <View>
       <View style={Styles.firstContainer}>
         <Text style={Styles.signIn}>Sign In</Text>
         <Text style={Styles.signInSecond}>
-          Hi! Welcome back, you've been missed
+          Hii Welcome , you've been missed
         </Text>
       </View>
 
@@ -38,45 +58,51 @@ const SignIn = (props) => {
           value={password}
         />
 
-        <Text style={Styles.forgetPass}>Forget Password?</Text>
+        <Text style={Styles.forgetPass} onPress={()=> navigation.navigate('ForgetPasswordScreen')}>Forget Password?</Text>
 
         <TouchableOpacity
           style={Styles.signInButton}
-          onPress={() => { props.navigation.navigate("Home")}}
+          onPress={handleSignIn}
+          disabled={loading} // Disable button while loading
         >
-          <Text style={Styles.buttonText}>Sign In</Text>
+          <Text style={Styles.buttonText}>
+            {loading ? 'Signing In...' : 'Sign In'}
+          </Text>
         </TouchableOpacity>
+        {/* Show loading indicator if loading */}
+        {loading && (
+          <View style={{ alignItems: 'center', marginTop: 10 }}>
+            <ActivityIndicator size="large" color="#007AFF" />
+          </View>
+        )}
+
         <Text style={Styles.orSignLine}>
-          ------------- Or sign in with --------------
+          {/* ------------- Or sign in with -------------- */}
         </Text>
 
         {/* <View style={Styles.linkView}>
-           <Image
+          <Image
             style={Styles.iconImage}
-            source={{ uri: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngimg.com%2Fimage%2F19635&psig=AOvVaw2CynNkrn3Yu1AZt_Q5ZT8s&ust=1747'}}
+            source={require('./IMAGES/facebook.png')}
           />
           <Image
             style={Styles.iconImage}
             source={require('./IMAGES/git.png')}
           />
           <Image
-
             style={Styles.iconImage}
             source={require('./IMAGES/instagram.png')}
           />
         </View> */}
 
-        <View>
-          <Text style ={Styles.lastFirstText}>Don't have an account?</Text>
-          <TouchableOpacity>
-            <Text style ={Styles.lastSecondText}>SignUp</Text>
-          </TouchableOpacity>
-        </View>
-          
-        
+        <Text style={Styles.lastFirstText}>
+          Don't have an account?{' '}
+          <Text style={Styles.lastSecondText}
+          onPress={() => navigation.navigate('SignUpScreen')}>Sign Up</Text>
+        </Text>
       </View>
     </View>
   );
 };
 
-export default SignIn;
+export default SignInScreen;

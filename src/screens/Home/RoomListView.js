@@ -7,25 +7,25 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const data = [
   {
-    id: "1", address: 'Varanasi', price: '$1200', rating: '3', person: 3, uri: "https://plus.unsplash.com/premium_photo-1661877303180-19a028c21048?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwcm9vbXxlbnwwfHwwfHx8MA%3D%3D",
+    id: "1", title: 'SeaView', address: 'Juhu Mumbai', price: '₹9,500', rating: '4.5', person: 3, uri: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80", // Apartment room
   },
   {
-    id: "2", address: 'Varanasi', price: '$1200', rating: '5', person: 3, uri: "https://media.istockphoto.com/id/1390233984/photo/modern-luxury-bedroom.jpg?s=612x612&w=0&k=20&c=po91poqYoQTbHUpO1LD1HcxCFZVpRG-loAMWZT7YRe4=",
+    id: "2", title: 'RoyalVilla', address: 'Vasant Delhi', price: '₹8,700', rating: '4.7', person: 2, uri: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80", // Villa room
   },
   {
-    id: "3", address: 'Varanasi', price: '$1200', rating: '5', person: 3, uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCf6COSuYk3_0zWopUXSj6pMm4_lcOq7zhPQ&s",
+    id: "3", title: 'UrbanNest', address: 'Indira Bangalore', price: '₹8,000', rating: '4.6', person: 2, uri: "https://images.unsplash.com/photo-1560448075-bb0bfcf7c6c8?auto=format&fit=crop&w=400&q=80", // House room
   },
   {
-    id: "4", address: 'Varanasi', price: '$1200', rating: '5', person: 3, uri: "https://media.designcafe.com/wp-content/uploads/2024/12/04110711/bed-back-wall-design-ideas.jpg",
+    id: "4", title: 'CityTown', address: 'Banjara Hyderabad', price: '₹7,800', rating: '4.4', person: 3, uri: "https://images.unsplash.com/photo-1519974719765-e6559eac2575?auto=format&fit=crop&w=400&q=80", // Townhouse room
   },
   {
-    id: "5", address: 'Mumbai', price: '$1300', rating: '5', person: 3, uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3wggekZlxtA7FXpSfa-Smvzd1zSTYSVPgBQw7DQA178XNkCHra70uEx9es2EsYRHEM2w&usqp=CAU",
+    id: "5", title: 'WorkSpace', address: 'Koregaon Pune', price: '₹7,500', rating: '4.3', person: 2, uri: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80", // Office room
   },
   {
-    id: "6", address: 'Simla', price: '$1100', rating: '5', person: 3, uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG3VWkLoM2ZvfqvWFWo--AOiAXKbbIQt6pcAFao70UWt1RqBa6eL80VKDu4lCLNoCiVJM&usqp=CAU",
+    id: "6", title: 'Skyline', address: 'T.Nagar Chennai', price: '₹8,200', rating: '4.2', person: 2, uri: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80", // Apartment room
   },
   {
-    id: "7", address: 'Varanasi', price: '$1200', rating: '5', person: 3, uri: "https://images.pexels.com/photos/27349378/pexels-photo-27349378/free-photo-of-a-living-room-with-a-large-flat-screen-tv-and-ocean-view.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    id: "7", title: 'GreenVilla', address: 'SaltLake Kolkata', price: '₹7,900', rating: '4.1', person: 3, uri: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80", // Villa room
   },
 ];
 
@@ -85,6 +85,9 @@ const houseList = [
   {id: '3', title: 'Modern Loft', price: '$1,800', address: '456 Urban Rd, NY', rating: 4.2, image: { uri: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd' }},
   {id: '4', title: 'Country Cottage', price: '$1,200', address: '321 Maple St, TX', rating: 4.0, image: { uri: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6' }},
   {id: '5', title: 'Lakeview Home', price: '$2,500', address: '654 Lake Dr, MI', rating: 4.8, image: { uri: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca' }},
+  {id: '6', title: 'Lakeview Home', price: '$2,500', address: '654 Lake Dr, MI', rating: 4.8, image: { uri: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca' }},
+  {id: '7', title: 'Modern Loft', price: '$1,800', address: '456 Urban Rd, NY', rating: 4.2, image: { uri: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd' }},
+  {id: '8', title: 'Elelend House', price: '$1,450', address: '124 St Hive, USA', rating: 3.9, image: { uri: 'https://images.unsplash.com/photo-1460518451285-97b6aa326961' }},
   // Add more houses as needed
 ];
 
@@ -181,7 +184,7 @@ const HomeViewCopy = () => {
         style={styles.scrollImage}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('Villa', { room: item })}
+            onPress={() => navigation.navigate('RoomDetails', { room: item })}
             activeOpacity={0.8}
           >
             <View style={{ marginRight: 10, backgroundColor: 'white', padding: 8, borderRadius:25 }}>
@@ -247,10 +250,7 @@ const TopUsers = () => {
 const HouseCard = ({ house }) => {
   const navigation = useNavigation();
   return (
-    <View>
-      <Text style={{fontSize:22}}>Something New</Text>
-    </View>,
-    <TouchableOpacity onPress={() => navigation.navigate('Villa', { room: house })} activeOpacity={0.8}>
+    <TouchableOpacity onPress={() => navigation.navigate('House', { room: house })} activeOpacity={0.8}>
       <View style={styles.houseCardContainer}>
         <Image source={house.image} style={styles.houseCardImage} />
         <View style={styles.houseCardContent}>
@@ -277,3 +277,56 @@ const HouseList = () => (
     ))}
   </View>
 );
+
+// Add or update styles for RoomListView screen
+// const localStyles = StyleSheet.create({
+//   mainContainer: {
+//     flex: 1,
+//     backgroundColor: '#f2f8fc',
+//     paddingTop: 10,
+//   },
+//   scrollImage: {
+//     minHeight: 220,
+//   },
+//   mainImage: {
+//     width: 180,
+//     height: 120,
+//     borderRadius: 18,
+//     resizeMode: 'cover',
+//   },
+//   address: {
+//     fontSize: 10,
+//     color: '#222e3a',
+//     fontWeight: 'bold',
+//     marginRight: 10,
+//   },
+//   price: {
+//     fontSize: 15,
+//     color: '#4fd1f9',
+//     fontWeight: 'bold',
+//     marginLeft: 8,
+//   },
+//   person: {
+//     fontSize: 14,
+//     color: '#888',
+//     marginRight: 4,
+//   },
+//   rating: {
+//     fontSize: 14,
+//     color: '#FFA500',
+//     marginLeft: 8,
+//     marginRight: 2,
+//   },
+//   textDiscover: {
+//     fontSize: 22,
+//     fontWeight: 'bold',
+//     marginLeft: 16,
+//     marginTop: 16,
+//     marginBottom: 8,
+//     color: '#222e3a',
+//   },
+//   // ...other styles for TopUsers, HouseList, etc. can be added here as needed...
+// });
+
+// // Replace all 'styles.' with 'localStyles.' in this file for RoomListView-specific components
+// // For example, in HomeView, HomeViewCopy, etc.

@@ -100,8 +100,9 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 30,
   },
   address: {
-    width: 100,
-    fontSize: 20,
+    // fontSize: 20,
+    width: 150,
+    fontSize: 15,
     fontWeight: 500,
     marginLeft: 15,
     // marginTop: 6,
@@ -110,7 +111,7 @@ export const styles = StyleSheet.create({
   },
   rating: {
     width: 15,
-    fontSize: 20,
+    fontSize: 10,
     marginLeft: 140,
     // opacity: 0.5,display: 'flex',
     // display: 
@@ -119,9 +120,9 @@ export const styles = StyleSheet.create({
   },
   price: {
     width: 100,
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: 600,
-    marginLeft: 80,
+    marginLeft: 30,
     // opacity: 0.5,
     // marginTop: 6,
     textAlignVertical: 'center',

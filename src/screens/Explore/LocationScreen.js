@@ -12,10 +12,10 @@ const LocationScreen = () => {
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Location Map</Text>
       </View>
-      {/* Map Placeholder */}
+      {/* Map Placeholder with route line and markers (static image for now) */}
       <View style={styles.mapContainer}>
         <Image
-          source={require('../../../assets/map-placeholder.png')} // Replace with your map image or MapView
+          source={require('../../../assets/Screenshot 2025-06-30 144537.png')}
           style={styles.mapImage}
           resizeMode="cover"
         />

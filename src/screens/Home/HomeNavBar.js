@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 export const HomeNavBar = () => {
   const navigation = useNavigation();
   return (
-    <View>
+    <View style={{marginTop:20}}>
       <View style={styles.notificaitonTop}>
         <Text style={styles.appName}>UniRent</Text> 
         <TouchableOpacity

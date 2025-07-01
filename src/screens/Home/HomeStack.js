@@ -25,7 +25,7 @@ const HomeStack = () => {
         options={{ headerTitleAlign: 'center' }}
       />
       <Stack.Screen name="Filter" component={Filter}
-        options={{ headerShown: false }}
+        options={{ headerShown: true }}
       />
       <Stack.Screen name="SearchScreen" component={SearchScreen}
         options={{ headerShown: true }}
