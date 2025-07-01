@@ -13,6 +13,24 @@ import House from '../Categories/Houses';
 import NotificationScreen from '../Notifications/NotificationScreen';
 import SearchScreen from '../Search/SearchScreen';
 
+// import { createStackNavigator } from '@react-navigation/stack';
+import SeaViewScreen from '../../screens/RoomDetails/SeaViewScreen';
+import RoyalVillaScreen from '../../screens/RoomDetails/RoyalVillaScreen';
+import UrbanNestScreen from '../../screens/RoomDetails/UrbanNestScreen';
+import CityTownScreen from '../../screens/RoomDetails/CityTownScreen';
+import WorkSpaceScreen from '../../screens/RoomDetails/WorkSpaceScreen';
+import SkylineScreen from '../../screens/RoomDetails/SkylineScreen';
+import GreenVillaScreen from '../../screens/RoomDetails/GreenVillaScreen';
+
+import { createStackNavigator } from '@react-navigation/stack';
+import AmitSharmaScreen from '../../screens/UserDetails/AmitSharmaScreen';
+import PriyaSinghScreen from '../../screens/UserDetails/PriyaSinghScreen';
+import RahulVermaScreen from '../../screens/UserDetails/RahulVermaScreen';
+import SnehaPatelScreen from '../../screens/UserDetails/SnehaPatelScreen';
+import VikramRaoScreen from '../../screens/UserDetails/VikramRaoScreen';
+
+
+
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
@@ -51,6 +69,25 @@ const HomeStack = () => {
       <Stack.Screen name="House" component={House}
         options={{ headerShown: true, headerTitleAlign: 'center' }}
       />
+
+
+      {/* Navigates from RoomListView.js FlatList (room cards) */}
+      <Stack.Screen name="SeaViewScreen" component={SeaViewScreen} options={{ title: 'SeaView' }} />
+      <Stack.Screen name="RoyalVillaScreen" component={RoyalVillaScreen} options={{ title: 'RoyalVilla' }} />
+      <Stack.Screen name="UrbanNestScreen" component={UrbanNestScreen} options={{ title: 'UrbanNest' }} />
+      <Stack.Screen name="CityTownScreen" component={CityTownScreen} options={{ title: 'CityTown' }} />
+      <Stack.Screen name="WorkSpaceScreen" component={WorkSpaceScreen} options={{ title: 'WorkSpace' }} />
+      <Stack.Screen name="SkylineScreen" component={SkylineScreen} options={{ title: 'Skyline' }} />
+      <Stack.Screen name="GreenVillaScreen" component={GreenVillaScreen} options={{ title: 'GreenVilla' }} />
+
+
+      {/* Navigates from RoomListView.js TopUsers FlatList (user cards) */}
+      <Stack.Screen name="AmitSharmaScreen" component={AmitSharmaScreen} options={{ title: 'Amit Sharma' }} />
+      <Stack.Screen name="PriyaSinghScreen" component={PriyaSinghScreen} options={{ title: 'Priya Singh' }} />
+      <Stack.Screen name="RahulVermaScreen" component={RahulVermaScreen} options={{ title: 'Rahul Verma' }} />
+      <Stack.Screen name="SnehaPatelScreen" component={SnehaPatelScreen} options={{ title: 'Sneha Patel' }} />
+      <Stack.Screen name="VikramRaoScreen" component={VikramRaoScreen} options={{ title: 'Vikram Rao' }} />
+
     </Stack.Navigator>
   )
 }

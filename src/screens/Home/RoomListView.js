@@ -7,63 +7,68 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const data = [
   {
-    id: "1", title: 'SeaView', address: 'Juhu Mumbai', price: '₹9,500', rating: '4.5', person: 3, uri: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80", // Apartment room
+    id: "1", title: 'SeaView', address: 'Juhu Mumbai', price: '₹9,500', rating: '4.5', person: 3, uri: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80", screen: 'SeaViewScreen', // Apartment room
   },
   {
-    id: "2", title: 'RoyalVilla', address: 'Vasant Delhi', price: '₹8,700', rating: '4.7', person: 2, uri: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80", // Villa room
+    id: "2", title: 'RoyalVilla', address: 'Vasant Delhi', price: '₹8,700', rating: '4.7', person: 2, uri: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80", screen: 'RoyalVillaScreen', // Villa room
   },
   {
-    id: "3", title: 'UrbanNest', address: 'Indira Bangalore', price: '₹8,000', rating: '4.6', person: 2, uri: "https://images.unsplash.com/photo-1560448075-bb0bfcf7c6c8?auto=format&fit=crop&w=400&q=80", // House room
+    id: "3", title: 'UrbanNest', address: 'Indira Bangalore', price: '₹8,000', rating: '4.6', person: 2, uri: "https://images.unsplash.com/photo-1560448075-bb0bfcf7c6c8?auto=format&fit=crop&w=400&q=80", screen: 'UrbanNestScreen', // House room
   },
   {
-    id: "4", title: 'CityTown', address: 'Banjara Hyderabad', price: '₹7,800', rating: '4.4', person: 3, uri: "https://images.unsplash.com/photo-1519974719765-e6559eac2575?auto=format&fit=crop&w=400&q=80", // Townhouse room
+    id: "4", title: 'CityTown', address: 'Banjara Hyderabad', price: '₹7,800', rating: '4.4', person: 3, uri: "https://images.unsplash.com/photo-1519974719765-e6559eac2575?auto=format&fit=crop&w=400&q=80", screen: 'CityTownScreen', // Townhouse room
   },
   {
-    id: "5", title: 'WorkSpace', address: 'Koregaon Pune', price: '₹7,500', rating: '4.3', person: 2, uri: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80", // Office room
+    id: "5", title: 'WorkSpace', address: 'Koregaon Pune', price: '₹7,500', rating: '4.3', person: 2, uri: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80", screen: 'WorkSpaceScreen', // Office room
   },
   {
-    id: "6", title: 'Skyline', address: 'T.Nagar Chennai', price: '₹8,200', rating: '4.2', person: 2, uri: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80", // Apartment room
+    id: "6", title: 'Skyline', address: 'T.Nagar Chennai', price: '₹8,200', rating: '4.2', person: 2, uri: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80", screen: 'SkylineScreen', // Apartment room
   },
   {
-    id: "7", title: 'GreenVilla', address: 'SaltLake Kolkata', price: '₹7,900', rating: '4.1', person: 3, uri: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80", // Villa room
+    id: "7", title: 'GreenVilla', address: 'SaltLake Kolkata', price: '₹7,900', rating: '4.1', person: 3, uri: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80", screen: 'GreenVillaScreen', // Villa room
   },
 ];
 
 const users = [
   {
     id: '1', 
-    name: 'Alex Methew',
+    name: 'Amit Sharma',
     offers: 126,
-    image: require('../../../assets/SystemImages/vm.jpg'), // Replace with your local image or use a URI
+    image: { uri: 'https://randomuser.me/api/portraits/men/32.jpg' }, // Google/RandomUser Indian male
     rating: 5,
+    screen: 'AmitSharmaScreen',
   },
   {
     id: '2',
-    name: 'Jonny roland',
+    name: 'Priya Singh',
     offers: 120,
-    image: require('../../../assets/SystemImages/vm.jpg'),
+    image: { uri: 'https://randomuser.me/api/portraits/women/44.jpg' }, // Google/RandomUser Indian female
     rating: 5,
+    screen: 'PriyaSinghScreen',
   },
   {
     id: '3',
-    name: 'Mickey',
+    name: 'Rahul Verma',
     offers: 156,
-    image: require('../../../assets/SystemImages/vm.jpg'),
+    image: { uri: 'https://randomuser.me/api/portraits/men/85.jpg' }, // Google/RandomUser Indian male
     rating: 5,
+    screen: 'RahulVermaScreen',
   },
   {
     id: '4',
-    name: 'Mickey',
+    name: 'Sneha Patel',
     offers: 156,
-    image: require('../../../assets/SystemImages/vm.jpg'),
+    image: { uri: 'https://randomuser.me/api/portraits/women/68.jpg' }, // Google/RandomUser Indian female
     rating: 5,
+    screen: 'SnehaPatelScreen',
   },
   {
     id: '5',
-    name: 'Mickey',
+    name: 'Vikram Rao',
     offers: 156,
-    image: require('../../../assets/SystemImages/vm.jpg'),
+    image: { uri: 'https://randomuser.me/api/portraits/men/77.jpg' }, // Google/RandomUser Indian male
     rating: 5,
+    screen: 'VikramRaoScreen',
   },
 ];
 
@@ -184,7 +189,7 @@ const HomeViewCopy = () => {
         style={styles.scrollImage}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('RoomDetails', { room: item })}
+            onPress={() => navigation.navigate(item.screen, { room: item })}
             activeOpacity={0.8}
           >
             <View style={{ marginRight: 10, backgroundColor: 'white', padding: 8, borderRadius:25 }}>
@@ -224,7 +229,7 @@ const TopUsers = () => {
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('ProfileScreen', { user: item })}
+            onPress={() => navigation.navigate(item.screen, { user: item })}
             activeOpacity={0.8}
           >
             <View style={styles.card}>

@@ -66,7 +66,7 @@ const SignInScreen = () => {
           disabled={loading} // Disable button while loading
         >
           <Text style={Styles.buttonText}>
-            {loading ? 'Signing In...' : 'Sign In'}
+            Sign In
           </Text>
         </TouchableOpacity>
         {/* Show loading indicator if loading */}
