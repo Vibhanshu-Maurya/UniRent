@@ -107,7 +107,7 @@ const AccountScreen = () => {
       }
 
       <TouchableOpacity style={styles.logout}
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.replace('SignInScreen')}
       >
         <Text style={styles.logoutText}>Log Out</Text>
       </TouchableOpacity>

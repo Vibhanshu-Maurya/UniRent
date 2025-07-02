@@ -7,7 +7,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const data = [
   {
-    id: "1", title: 'SeaView', address: 'Juhu Mumbai', price: '₹9,500', rating: '4.5', person: 3, uri: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80", screen: 'SeaViewScreen', // Apartment room
+    id: "1", title: 'SeaView', address: 'SeaView Apartment', price: '₹9,500', rating: '4.5', person: 3, uri: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80", screen: 'SeaViewScreen', // Apartment room
   },
   {
     id: "2", title: 'RoyalVilla', address: 'Vasant Delhi', price: '₹8,700', rating: '4.7', person: 2, uri: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80", screen: 'RoyalVillaScreen', // Villa room
@@ -32,7 +32,7 @@ const data = [
 const users = [
   {
     id: '1', 
-    name: 'Amit Sharma',
+    name: 'Pratik Maurya',
     offers: 126,
     image: { uri: 'https://randomuser.me/api/portraits/men/32.jpg' }, // Google/RandomUser Indian male
     rating: 5,

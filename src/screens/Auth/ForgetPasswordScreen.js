@@ -11,7 +11,8 @@ const ForgetPasswordScreen = () => {
   const [Confirm_Pass, setConfirm_Pass] = useState('');
   const [refreshing, setRefreshing] = useState(false);
 
-  const handleReset = () => {
+  const handleReset = async () => {
+    // Validate input fields
     if (!usernameOrEmail) {
       Alert.alert('Error', 'Please enter your username or email.');
       return;
@@ -20,8 +21,31 @@ const ForgetPasswordScreen = () => {
       Alert.alert('Error', 'Please enter your Current Password.');
       return;
     }
-    // Simulate sending reset link
-    Alert.alert('Success', 'Your Password Has been Reset!');
+    if (!New_Pass) {
+      Alert.alert('Error', 'Please enter your new password.');
+      return;
+    }
+    if (New_Pass !== Confirm_Pass) {
+      Alert.alert('Error', 'New password and confirm password do not match.');
+      return;
+    }
+    try {
+      // Make a POST request to your backend to reset the password
+      const res = await fetch('http://192.168.211.74:3000/forget-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: usernameOrEmail, currentPassword: Current_Pass, newPassword: New_Pass }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        Alert.alert('Success', 'Your password has been reset!');
+        navigation.goBack();
+      } else {
+        Alert.alert('Error', data.message || 'Password reset failed.');
+      }
+    } catch (e) {
+      Alert.alert('Error', 'Network error.');
+    }
   };
 
   const onRefresh = () => {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const roomImages = [
   'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
@@ -13,7 +15,9 @@ const roomImages = [
 ];
 
 const SeaViewScreen = () => (
+  
   <View style={styles.screenBg}>
+    
     {/* <View style={styles.headerRow}>
       <TouchableOpacity style={styles.iconBtn}>
         <Ionicons name="arrow-back" size={26} color="#222" />
@@ -50,7 +54,9 @@ const SeaViewScreen = () => (
       <View style={styles.priceRow}>
         <Text style={styles.priceLabel}>Price</Text>
         <Text style={styles.priceValue}>₹9,500</Text>
-        <TouchableOpacity style={styles.bookBtn}>
+        <TouchableOpacity style={styles.bookBtn}
+          // onPress={() => navigation.navigate('BookingScreen')}
+        >
           <Text style={styles.bookBtnText}>Book Now</Text>
         </TouchableOpacity>
       </View>

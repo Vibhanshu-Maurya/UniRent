@@ -44,11 +44,6 @@ const AppNavigator = () => {
                     options={{ headerShown: false }}
                 />
 
-                  {/* <Stack.Screen
-                    name="OnBoarding"
-                    component={OnboardScreen}
-                    options={{ headerShown: false }}
-                /> */}
                 <Stack.Screen
                     name="MainScreen"
                     component={MainScreen}

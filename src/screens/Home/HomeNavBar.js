@@ -10,6 +10,13 @@ import { useNavigation } from '@react-navigation/native';
 
 export const HomeNavBar = () => {
   const navigation = useNavigation();
+  const [searchText, setSearchText] = React.useState("");
+
+  const handleSearch = () => {
+    // Navigate to SearchScreen and pass the search text as a param
+    navigation.navigate("SearchScreen", { query: searchText });
+  };
+
   return (
     <View style={{marginTop:20}}>
       <View style={styles.notificaitonTop}>
@@ -28,13 +35,18 @@ export const HomeNavBar = () => {
       </View>
 
       <View style={styles.searchOutline}>
-        <TextInput style={styles.searchBar} placeholder="Search" />
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Search"
+          value={searchText}
+          onChangeText={setSearchText}
+        />
         <TouchableOpacity
-        onPress={()=> navigation.navigate("SearchScreen")}
+          onPress={handleSearch}
           style={styles.searchStyle}
         >
           <View style={{backgroundColor:'rgba(211, 211, 211, 1)',flex: 1, justifyContent: 'center', alignItems: 'center',borderTopRightRadius: 10, borderBottomRightRadius: 10}}> 
-          <Ionicons name="search-outline" size={25} color="" />
+            <Ionicons name="search-outline" size={25} color="" />
           </View>
         </TouchableOpacity>
         <View style={{ marginLeft: 10 }}>

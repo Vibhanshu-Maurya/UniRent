@@ -157,6 +157,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     marginTop: 8,
+    marginLeft: 5,
+    // alignItems: 'center',
   },
   offers: {
     color: '#fff',

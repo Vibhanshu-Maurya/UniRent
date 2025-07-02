@@ -19,6 +19,49 @@ const SignUpScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agree, setAgree] = useState(false);
 
+  const handleSignUp = async () => {
+    // Log when the Sign Up button is pressed
+    console.log('SignUp button pressed');
+    // Check if all fields are filled
+    if (!name || !email || !password || !confirmPassword) {
+      alert('Please fill all fields');
+      return;
+    }
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    // Check if user agreed to terms
+    if (!agree) {
+      alert('You must agree to the Terms and Conditions');
+      return;
+    }
+    try {
+      // Make a POST request to your backend /signup endpoint
+      const res = await fetch('http://192.168.211.74:3000/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
+      // Log when the fetch completes
+      console.log('Fetch completed');
+      const data = await res.json();
+      if (data.success) {
+        // If sign up is successful, show alert and navigate to SignInScreen
+        alert('Sign up successful! Please sign in.');
+        navigation.navigate('SignInScreen');
+      } else {
+        // Show error message if sign up fails
+        alert(data.error || 'Sign up failed');
+      }
+    } catch (e) {
+      // Log and show network error if fetch fails
+      console.log('Error:', e);
+      alert('Network error');
+    }
+  };
+
   return (
     <View>
       <View style={Styles.firstContainer}>
@@ -42,6 +85,9 @@ const SignUpScreen = () => {
         placeholder="Enter your email"
         onChangeText={(text) => setEmail(text)}
         value={email}
+        keyboardType="email-address" // Only show email keyboard
+        autoCapitalize="none" // Prevent auto-capitalization
+        autoCorrect={false} // Prevent autocorrect
       />
 
       <Text style={Styles.textDocument}>Create Password</Text>
@@ -80,27 +126,17 @@ const SignUpScreen = () => {
           Styles.signInButton,
           { backgroundColor: agree ? 'green' : '#ccc' },
         ]}
-        onPress={() => {
-          if (agree) {
-            setEmail('');
-            setPassword('');
-            setName('');
-            setConfirmPassword('');
-            setAgree(false);
-          }
-        }}
+        onPress={handleSignUp}
         disabled={!agree}
       >
-        <Text style={Styles.buttonText}
-          onPress={() => navigation.navigate('SignInScreen')}
-        >Sign Up</Text>
+        <Text style={Styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
       <Text style={Styles.lastFirstText}>
         Already have an account?{' '}
         <Text
           style={styles.registerText}
-          onPress={() => navigation.navigate('SignInScreen')}
+          // Remove onPress to disable going back to SignInScreen
         >Sign In</Text>
       </Text>
     </View>
