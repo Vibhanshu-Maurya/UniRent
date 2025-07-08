@@ -7,25 +7,25 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const data = [
   {
-    id: "1", title: 'SeaView', address: 'SeaView Apartment', price: '₹9,500', rating: '4.5', person: 3, uri: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80", screen: 'SeaViewScreen', // Apartment room
+    id: "1", title: 'Apartment', address: 'Apartment, Prayarag', price: '₹9,500', rating: '4.5', person: 3, uri: "https://media.istockphoto.com/id/2021707621/photo/night-scene-modern-style-luxury-black-master-bedroom-with-city-view-3d-render.jpg?s=2048x2048&w=is&k=20&c=2bJeNTK8HPMLBsdBIHwuF6pz6K_LSioV91pupbq_ZqE=", screen: 'SeaViewScreen', // Apartment room
   },
   {
-    id: "2", title: 'RoyalVilla', address: 'Vasant Delhi', price: '₹8,700', rating: '4.7', person: 2, uri: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80", screen: 'RoyalVillaScreen', // Villa room
+    id: "2", title: 'Villa', address: 'Villa, Delhi', price: '₹8,700', rating: '4.7', person: 2, uri: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80", screen: 'RoyalVillaScreen', // Villa room
   },
   {
-    id: "3", title: 'UrbanNest', address: 'Indira Bangalore', price: '₹8,000', rating: '4.6', person: 2, uri: "https://images.unsplash.com/photo-1560448075-bb0bfcf7c6c8?auto=format&fit=crop&w=400&q=80", screen: 'UrbanNestScreen', // House room
+    id: "3", title: 'Villa', address: 'Villa, Bangalore', price: '₹8,000', rating: '4.6', person: 2, uri: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80" , screen: 'UrbanNestScreen', // House room
   },
   {
-    id: "4", title: 'CityTown', address: 'Banjara Hyderabad', price: '₹7,800', rating: '4.4', person: 3, uri: "https://images.unsplash.com/photo-1519974719765-e6559eac2575?auto=format&fit=crop&w=400&q=80", screen: 'CityTownScreen', // Townhouse room
+    id: "4", title: 'CityTown', address: 'CityTown, Hyderabad', price: '₹7,800', rating: '4.4', person: 3, uri: "https://images.unsplash.com/photo-1519974719765-e6559eac2575?auto=format&fit=crop&w=400&q=80", screen: 'CityTownScreen', // Townhouse room
   },
   {
-    id: "5", title: 'WorkSpace', address: 'Koregaon Pune', price: '₹7,500', rating: '4.3', person: 2, uri: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80", screen: 'WorkSpaceScreen', // Office room
+    id: "5", title: 'WorkSpace', address: 'WorkSpace, Pune', price: '₹7,500', rating: '4.3', person: 2, uri: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80", screen: 'WorkSpaceScreen', // Office room
   },
   {
-    id: "6", title: 'Skyline', address: 'T.Nagar Chennai', price: '₹8,200', rating: '4.2', person: 2, uri: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80", screen: 'SkylineScreen', // Apartment room
+    id: "6", title: 'Office', address: 'Office, Chennai', price: '₹8,200', rating: '4.2', person: 2, uri: "https://t3.ftcdn.net/jpg/03/16/69/16/360_F_316691661_oSHK65TNnCY0uHLk6htlrQtEm5yOmBBQ.jpg", screen: 'SkylineScreen', // Apartment room
   },
   {
-    id: "7", title: 'GreenVilla', address: 'SaltLake Kolkata', price: '₹7,900', rating: '4.1', person: 3, uri: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80", screen: 'GreenVillaScreen', // Villa room
+    id: "7", title: 'Villa', address: 'GreenVilla, Kolkata', price: '₹7,900', rating: '4.1', person: 3, uri: "https://media.istockphoto.com/id/1815808691/photo/luxury-bedroom-suite-in-resort-high-rise-hotel-with-cushion.jpg?s=2048x2048&w=is&k=20&c=0KXj_sK4TVRpuv_YfxGW3_QIsx1jGW1AQX_fY-NjEq4=", screen: 'GreenVillaScreen', // Villa room
   },
 ];
 

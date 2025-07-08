@@ -57,9 +57,9 @@ const SignInScreen = () => {
     <View>
       <View style={Styles.firstContainer}>
         <Text style={Styles.signIn}>Sign In</Text>
-        <Text style={Styles.signInSecond}>
+        {/* <Text style={Styles.signInSecond}>
           Hii Welcome , you've been missed
-        </Text>
+        </Text> */}
       </View>
 
       <View>
@@ -72,7 +72,7 @@ const SignInScreen = () => {
           keyboardType="email-address" // Only show email keyboard
           autoCapitalize="none" // Prevent auto-capitalization
           autoCorrect={false} // Prevent autocorrect
-        />
+        /> 
 
         <Text style={Styles.textDocument}>Password</Text>
         <TextInput

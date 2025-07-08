@@ -29,7 +29,10 @@ import RahulVermaScreen from '../../screens/UserDetails/RahulVermaScreen';
 import SnehaPatelScreen from '../../screens/UserDetails/SnehaPatelScreen';
 import VikramRaoScreen from '../../screens/UserDetails/VikramRaoScreen';
 
-
+//For Payment
+import PaymentScreen from '../Payment/PaymentScreen';
+import GpayQr from '../Payment/GpayQr';
+import PaymentSuccessfulScreen from '../Payment/PaymentSuccessfulScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -72,13 +75,13 @@ const HomeStack = () => {
 
 
       {/* Navigates from RoomListView.js FlatList (room cards) */}
-      <Stack.Screen name="SeaViewScreen" component={SeaViewScreen} options={{ title: 'SeaView' }} />
-      <Stack.Screen name="RoyalVillaScreen" component={RoyalVillaScreen} options={{ title: 'RoyalVilla' }} />
-      <Stack.Screen name="UrbanNestScreen" component={UrbanNestScreen} options={{ title: 'UrbanNest' }} />
-      <Stack.Screen name="CityTownScreen" component={CityTownScreen} options={{ title: 'CityTown' }} />
-      <Stack.Screen name="WorkSpaceScreen" component={WorkSpaceScreen} options={{ title: 'WorkSpace' }} />
-      <Stack.Screen name="SkylineScreen" component={SkylineScreen} options={{ title: 'Skyline' }} />
-      <Stack.Screen name="GreenVillaScreen" component={GreenVillaScreen} options={{ title: 'GreenVilla' }} />
+      <Stack.Screen name="SeaViewScreen" component={SeaViewScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="RoyalVillaScreen" component={RoyalVillaScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="UrbanNestScreen" component={UrbanNestScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="CityTownScreen" component={CityTownScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="WorkSpaceScreen" component={WorkSpaceScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="SkylineScreen" component={SkylineScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="GreenVillaScreen" component={GreenVillaScreen} options={{ headerShown: false }} />
 
 
       {/* Navigates from RoomListView.js TopUsers FlatList (user cards) */}
@@ -87,7 +90,12 @@ const HomeStack = () => {
       <Stack.Screen name="RahulVermaScreen" component={RahulVermaScreen} options={{ title: 'Rahul Verma' }} />
       <Stack.Screen name="SnehaPatelScreen" component={SnehaPatelScreen} options={{ title: 'Sneha Patel' }} />
       <Stack.Screen name="VikramRaoScreen" component={VikramRaoScreen} options={{ title: 'Vikram Rao' }} />
-
+{/* 
+      //Payment screen stack navigation */}
+      <Stack.Screen name="PaymentScreen" component={PaymentScreen} options={{headerShown:true,title: 'Payment'}}/>
+      <Stack.Screen name="GpayQr" component={GpayQr} options={{headerShown:true,title: 'Payment'}}/>
+      <Stack.Screen name="PaymentSuccessfulScreen" component={PaymentSuccessfulScreen} options={{headerShown:true,title: 'Payment Successful'}}/>
+      
     </Stack.Navigator>
   )
 }

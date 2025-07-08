@@ -6,7 +6,7 @@ const allRooms = [
   {
     id: 'a1',
     type: 'Apartment',
-    title: 'Mumbai City Apartment',
+    title: 'Mumbai, Apartment',
     location: 'Andheri, Mumbai',
     price: '₹9,500/month',
     image: { uri: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80' }, // Apartment room
@@ -14,7 +14,7 @@ const allRooms = [
   {
     id: 'a2',
     type: 'Apartment',
-    title: 'Bangalore Studio',
+    title: 'Bangalore, Apartment',
     location: 'Indiranagar, Bangalore',
     price: '₹8,000/month',
     image: { uri: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80' }, // Apartment room
@@ -23,7 +23,7 @@ const allRooms = [
   {
     id: 'h1',
     type: 'House',
-    title: 'Bungalow in Lonavala',
+    title: 'Lonavala, Bungalow',
     location: 'Lonavala, Maharashtra',
     price: '₹9,000/month',
     image: { uri: 'https://images.unsplash.com/photo-1560448075-bb0bfcf7c6c8?auto=format&fit=crop&w=400&q=80' }, // House room
@@ -40,7 +40,7 @@ const allRooms = [
   {
     id: 't1',
     type: 'Townhouse',
-    title: 'Bandra Townhouse',
+    title: 'Bandra, Townhouse',
     location: 'Bandra, Mumbai',
     price: '₹8,500/month',
     image: { uri: 'https://images.unsplash.com/photo-1519974719765-e6559eac2575?auto=format&fit=crop&w=400&q=80' }, // Townhouse room

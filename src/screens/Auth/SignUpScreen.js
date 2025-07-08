@@ -9,6 +9,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'; // import check icon
 import { Styles } from '../../styles/SignUpStyles';
 import { useNavigation } from '@react-navigation/native';
+import { BACKEND_URL } from '../../components/constants/Config';
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
@@ -29,17 +30,16 @@ const SignUpScreen = () => {
     }
     // Check if passwords match
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      alert('Passwords do not match');              
       return;
     }
     // Check if user agreed to terms
     if (!agree) {
       alert('You must agree to the Terms and Conditions');
       return;
-    }
-    try {
-      // Make a POST request to your backend /signup endpoint
-      const res = await fetch('http://192.168.211.74:3000/signup', {
+    }    try {
+      // Make a POST request to your backend /signup endpoint using config
+      const res = await fetch(`${BACKEND_URL}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
@@ -66,9 +66,9 @@ const SignUpScreen = () => {
     <View>
       <View style={Styles.firstContainer}>
         <Text style={Styles.signIn}>Sign Up</Text>
-        <Text style={Styles.signInSecond}>
+        {/* <Text style={Styles.signInSecond}>
           Hi! Welcome to UniRent, Please Enter your details
-        </Text>
+        </Text> */}
       </View>
 
       <Text style={Styles.textDocument}>Name</Text>
