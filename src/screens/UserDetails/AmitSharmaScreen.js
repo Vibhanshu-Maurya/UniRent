@@ -4,10 +4,10 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 const AmitSharmaScreen = () => (
   <View style={styles.container}>
     <Image
-      source={{ uri: 'https://randomuser.me/api/portraits/men/32.jpg' }}
+      source={require('../../../assets/SystemImages/pmm.jpg')}
       style={styles.avatar}
     />
-    <Text style={styles.name}>Amit Sharma</Text>
+    <Text style={styles.name}>Pratik Maurya</Text>
     <Text style={styles.title}>🏆 Top User</Text>
     <Text style={styles.stats}>Offers Completed: <Text style={styles.bold}>126</Text></Text>
     <Text style={styles.stats}>User Rating: <Text style={styles.bold}>5.0 ★</Text></Text>
@@ -16,7 +16,7 @@ const AmitSharmaScreen = () => (
       <Text style={styles.badge}>Superhost</Text>
     </View>
     <Text style={styles.bio}>
-      Amit Sharma is one of our most trusted and active users, known for his quick responses and excellent hospitality. He has helped over 100 guests find their perfect stay across India.
+      Pratik Maurya is one of our most trusted and active users, known for his quick responses and excellent hospitality. He has helped over 100 guests find their perfect stay across India.
     </Text>
   </View>
 );

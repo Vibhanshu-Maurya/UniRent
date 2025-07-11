@@ -1,64 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
-  Text,
   View,
-  StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
+  Alert,
+  Modal,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons'; // import check icon
-import { Styles } from '../../styles/SignUpStyles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import { BACKEND_URL } from '../../components/constants/Config';
+import { Styles } from '../../styles/SignUpStyles';
+import { ProfileContext } from '../../screens/Profile/ProfileContext';
+
+const BACKEND_URL = 'http://192.168.250.74:3000'; // Replace with your actual IP address
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
+  const { updateProfile } = useContext(ProfileContext);
 
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agree, setAgree] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const isValidGmail = (email) =>
+    /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email);
 
   const handleSignUp = async () => {
-    // Log when the Sign Up button is pressed
-    console.log('SignUp button pressed');
-    // Check if all fields are filled
     if (!name || !email || !password || !confirmPassword) {
-      alert('Please fill all fields');
+      Alert.alert('Missing Fields', 'Please fill all the fields.');
       return;
     }
-    // Check if passwords match
+
+    if (!isValidGmail(email)) {
+      Alert.alert('Invalid Email', 'Please enter a valid Gmail address.');
+      return;
+    }
+
     if (password !== confirmPassword) {
-      alert('Passwords do not match');              
+      Alert.alert('Password Mismatch', 'Passwords do not match.');
       return;
     }
-    // Check if user agreed to terms
+
     if (!agree) {
-      alert('You must agree to the Terms and Conditions');
+      Alert.alert('Agreement Required', 'You must agree to the terms.');
       return;
-    }    try {
-      // Make a POST request to your backend /signup endpoint using config
+    }
+
+    try {
       const res = await fetch(`${BACKEND_URL}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
       });
-      // Log when the fetch completes
-      console.log('Fetch completed');
+
       const data = await res.json();
+
       if (data.success) {
-        // If sign up is successful, show alert and navigate to SignInScreen
-        alert('Sign up successful! Please sign in.');
-        navigation.navigate('SignInScreen');
+        updateProfile({
+          name,
+          email,
+          image: null,
+        });
+        setModalVisible(true);
+        setTimeout(() => {
+          setModalVisible(false);
+          navigation.navigate('SignInScreen');
+        }, 2000);
       } else {
-        // Show error message if sign up fails
-        alert(data.error || 'Sign up failed');
+        Alert.alert('Signup Failed', data.message || 'Please try again');
       }
-    } catch (e) {
-      // Log and show network error if fetch fails
-      console.log('Error:', e);
-      alert('Network error');
+    } catch (err) {
+      Alert.alert('Network Error', 'Could not connect to the server.');
     }
   };
 
@@ -66,66 +81,76 @@ const SignUpScreen = () => {
     <View>
       <View style={Styles.firstContainer}>
         <Text style={Styles.signIn}>Sign Up</Text>
-        {/* <Text style={Styles.signInSecond}>
-          Hi! Welcome to UniRent, Please Enter your details
-        </Text> */}
       </View>
 
       <Text style={Styles.textDocument}>Name</Text>
       <TextInput
         style={Styles.textInput}
-        placeholder="Enter your Name"
-        onChangeText={(text) => setName(text)}
+        placeholder="Enter your name"
         value={name}
+        onChangeText={setName}
+        autoCapitalize="words"
       />
 
       <Text style={Styles.textDocument}>Email</Text>
       <TextInput
         style={Styles.textInput}
-        placeholder="Enter your email"
-        onChangeText={(text) => setEmail(text)}
+        placeholder="Enter your Gmail"
         value={email}
-        keyboardType="email-address" // Only show email keyboard
-        autoCapitalize="none" // Prevent auto-capitalization
-        autoCorrect={false} // Prevent autocorrect
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
       />
 
-      <Text style={Styles.textDocument}>Create Password</Text>
+      <Text style={Styles.textDocument}>Password</Text>
       <TextInput
         style={Styles.textInput}
-        placeholder="Password"
-        secureTextEntry={true}
-        onChangeText={(text) => setPassword(text)}
+        placeholder="Enter password"
         value={password}
+        onChangeText={setPassword}
+        secureTextEntry
       />
 
       <Text style={Styles.textDocument}>Confirm Password</Text>
       <TextInput
         style={Styles.textInput}
-        placeholder="Confirm Password"
-        secureTextEntry={true}
-        onChangeText={(text) => setConfirmPassword(text)}
+        placeholder="Confirm password"
         value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
       />
 
-      {/* Terms & Conditions Checkbox */}
       <TouchableOpacity
-        style={styles.checkboxContainer}
         onPress={() => setAgree(!agree)}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginTop: 15,
+          marginLeft: 22,
+        }}
       >
-        <View style={[styles.checkbox, agree && styles.checkedCheckbox]}>
+        <View
+          style={{
+            width: 22,
+            height: 22,
+            borderWidth: 2,
+            borderColor: 'green',
+            borderRadius: 4,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginRight: 10,
+            backgroundColor: agree ? 'green' : 'transparent',
+          }}
+        >
           {agree && <Ionicons name="checkmark" size={16} color="#fff" />}
         </View>
-        <Text style={styles.checkboxText}>
+        <Text style={{ color: 'black' }}>
           I agree with the Terms and Conditions
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[
-          Styles.signInButton,
-          { backgroundColor: agree ? 'green' : '#ccc' },
-        ]}
+        style={[Styles.signInButton, { backgroundColor: agree ? 'green' : '#ccc' }]}
         onPress={handleSignUp}
         disabled={!agree}
       >
@@ -135,46 +160,45 @@ const SignUpScreen = () => {
       <Text style={Styles.lastFirstText}>
         Already have an account?{' '}
         <Text
-          style={styles.registerText}
-          // Remove onPress to disable going back to SignInScreen
-        >Sign In</Text>
+          style={Styles.lastSecondText}
+          onPress={() => navigation.navigate('SignInScreen')}
+        >
+          Sign In
+        </Text>
       </Text>
+
+      <Modal
+        visible={modalVisible}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: '#fff',
+              padding: 30,
+              borderRadius: 10,
+              alignItems: 'center',
+              elevation: 5,
+              width: '80%',
+            }}
+          >
+            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+              Sign Up Completed!
+            </Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: 20,
-    marginVertical: 10,
-  },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderWidth: 2,
-    borderColor: 'green',
-    marginRight: 10,
-    borderRadius: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkedCheckbox: {
-    backgroundColor: 'green',
-    borderColor: '#007bff',
-  },
-  checkboxText: {
-    fontSize: 14,
-    color: '#333',
-  },
-  registerText: {
-    color: 'green',
-    textDecorationLine: 'underline',
-    textDecorationColor: 'green',
-    fontWeight: '700',
-  },
-});
-
 
 export default SignUpScreen;

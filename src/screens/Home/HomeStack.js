@@ -70,7 +70,7 @@ const HomeStack = () => {
         options={{ headerShown: true, headerTitleAlign: 'center' }}
       />
       <Stack.Screen name="House" component={House}
-        options={{ headerShown: true, headerTitleAlign: 'center' }}
+        options={{ headerShown: false, headerTitleAlign: 'center' }}
       />
 
 
@@ -85,11 +85,11 @@ const HomeStack = () => {
 
 
       {/* Navigates from RoomListView.js TopUsers FlatList (user cards) */}
-      <Stack.Screen name="AmitSharmaScreen" component={AmitSharmaScreen} options={{ title: 'Amit Sharma' }} />
-      <Stack.Screen name="PriyaSinghScreen" component={PriyaSinghScreen} options={{ title: 'Priya Singh' }} />
-      <Stack.Screen name="RahulVermaScreen" component={RahulVermaScreen} options={{ title: 'Rahul Verma' }} />
-      <Stack.Screen name="SnehaPatelScreen" component={SnehaPatelScreen} options={{ title: 'Sneha Patel' }} />
-      <Stack.Screen name="VikramRaoScreen" component={VikramRaoScreen} options={{ title: 'Vikram Rao' }} />
+      <Stack.Screen name="AmitSharmaScreen" component={AmitSharmaScreen} options={{ title: 'Top User' }} />
+      <Stack.Screen name="PriyaSinghScreen" component={PriyaSinghScreen} options={{ title: 'Top User' }} />
+      <Stack.Screen name="RahulVermaScreen" component={RahulVermaScreen} options={{ title: 'Top User' }} />
+      <Stack.Screen name="SnehaPatelScreen" component={SnehaPatelScreen} options={{ title: 'Top User' }} />
+      <Stack.Screen name="VikramRaoScreen" component={VikramRaoScreen} options={{ title: 'Top User' }} />
 {/* 
       //Payment screen stack navigation */}
       <Stack.Screen name="PaymentScreen" component={PaymentScreen} options={{headerShown:true,title: 'Payment'}}/>

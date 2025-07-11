@@ -4,10 +4,10 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 const SnehaPatelScreen = () => (
   <View style={styles.container}>
     <Image
-      source={{ uri: 'https://randomuser.me/api/portraits/women/68.jpg' }}
-      style={styles.avatar}
-    />
-    <Text style={styles.name}>Sneha Patel</Text>
+          source={require('../../../assets/SystemImages/ravi.jpg')}
+          style={styles.avatar}
+        />
+    <Text style={styles.name}>Ravi Maurya</Text>
     <Text style={styles.title}>🏆 Top User</Text>
     <Text style={styles.stats}>Offers Completed: <Text style={styles.bold}>156</Text></Text>
     <Text style={styles.stats}>User Rating: <Text style={styles.bold}>5.0 ★</Text></Text>
@@ -16,7 +16,7 @@ const SnehaPatelScreen = () => (
       <Text style={styles.badge}>Superhost</Text>
     </View>
     <Text style={styles.bio}>
-      Sneha Patel is celebrated for her exceptional service and attention to guest needs. Her properties are among the most popular choices for travelers in India.
+      Ravi Maurya is celebrated for her exceptional service and attention to guest needs. Her properties are among the most popular choices for travelers in India.
     </Text>
   </View>
 );
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
     height: 110,
     borderRadius: 55,
     marginBottom: 16,
-    borderWidth: 3,
-    borderColor: '#4e9cff',
+    // borderWidth: 3,
+    // borderColor: '#4e9cff',
   },
   name: {
     fontSize: 28,

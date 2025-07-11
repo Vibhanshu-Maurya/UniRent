@@ -1,15 +1,29 @@
-import React, { useContext, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { ProfileContext } from './ProfileContext';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+const BACKEND_URL = 'http://192.168.250.74:3000';
+
 const EditProfileScreen = ({ navigation }) => {
   const { profile, updateProfile } = useContext(ProfileContext);
   const [name, setName] = useState(profile.name);
-  const [email, setEmail] = useState(profile.email);
-  const [image, setImage] = useState(profile.image);
+  const [imageUri, setImageUri] = useState(profile.image?.uri || null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setImageUri(profile.image?.uri || null);
+  }, [profile.image]);
 
   const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -17,33 +31,82 @@ const EditProfileScreen = ({ navigation }) => {
       Alert.alert('Permission required', 'Please allow access to your photos.');
       return;
     }
-    let result = await ImagePicker.launchImageLibraryAsync({
+
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [1, 1],
       quality: 1,
     });
-    if (!result.canceled && result.assets && result.assets.length > 0) {
-      setImage({ uri: result.assets[0].uri });
+
+    if (!result.canceled && result.assets && result.assets[0].uri) {
+      setImageUri(result.assets[0].uri);
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    if (!name.trim()) {
+      Alert.alert('Validation', 'Name cannot be empty');
+      return;
+    }
+
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      updateProfile({ name, email, image });
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/users/${profile.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          image: imageUri || null,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        const updatedProfile = {
+          ...profile,
+          name,
+          image: imageUri ? { uri: imageUri } : null,
+        };
+
+        updateProfile(updatedProfile);
+
+        // Store profile in local storage for persistence
+        await AsyncStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+
+        Alert.alert('Success', 'Profile updated successfully');
+        navigation.goBack();
+      } else {
+        Alert.alert('Error', data.message || 'Failed to update profile');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Something went wrong. Please try again.');
+      console.error('Update error:', error);
+    } finally {
       setLoading(false);
-      navigation.goBack();
-    }, 1000);
+    }
   };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
-        <Image source={image} style={styles.profileImage} />
-        <View style={styles.cameraIcon}><Icon name="camera" size={20} color="#007AFF" /></View>
+        <Image
+          source={
+            imageUri
+              ? { uri: imageUri }
+              : require('../../../assets/SystemImages/vm.jpg')
+          }
+          style={styles.profileImage}
+        />
+        <View style={styles.cameraIcon}>
+          <Icon name="camera" size={20} color="#007AFF" />
+        </View>
       </TouchableOpacity>
+
       <TextInput
         style={styles.input}
         value={name}
@@ -52,14 +115,19 @@ const EditProfileScreen = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
-        value={email}
-        onChangeText={setEmail}
+        value={profile.email}
+        editable={false}
         placeholder="Email"
-        keyboardType="email-address"
-        autoCapitalize="none"
       />
-      <TouchableOpacity style={styles.saveButton} onPress={handleSave} disabled={loading}>
-        <Text style={styles.saveButtonText}>{loading ? 'Saving...' : 'Save Changes'}</Text>
+
+      <TouchableOpacity
+        style={[styles.saveButton, loading && { opacity: 0.6 }]}
+        onPress={handleSave}
+        disabled={loading}
+      >
+        <Text style={styles.saveButtonText}>
+          {loading ? 'Saving...' : 'Save Changes'}
+        </Text>
       </TouchableOpacity>
     </View>
   );

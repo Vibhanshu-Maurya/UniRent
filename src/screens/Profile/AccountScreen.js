@@ -1,5 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Modal,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../../styles/ProfileStyles';
 import { useNavigation } from '@react-navigation/native';
@@ -43,7 +50,7 @@ const AccountScreen = () => {
     { label: 'App Version', icon: 'apps-outline', screen: 'AppVersionScreen' },
   ];
 
-  const otherSections = [
+  const otherSections = [ 
     { label: 'Invite Friends', icon: 'share-social-outline', screen: 'InviteFriendsScreen' },
     { label: 'App Theme', icon: 'color-palette-outline', screen: 'AppThemeScreen' },
     { label: 'About Us', icon: 'information-outline', screen: 'AboutUsScreen' },
@@ -53,11 +60,9 @@ const AccountScreen = () => {
     <ScrollView style={styles.container}>
       <View style={styles.profileContainer}>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <Image
-            source={profile.image}
-            style={styles.profileImage}
-          />
+          <Image source={profile.image} style={styles.profileImage} />
         </TouchableOpacity>
+
         <Modal
           visible={modalVisible}
           transparent={true}
@@ -65,50 +70,38 @@ const AccountScreen = () => {
           onRequestClose={() => setModalVisible(false)}
         >
           <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.8)', justifyContent: 'center', alignItems: 'center' }}>
-            <TouchableOpacity style={{ position: 'absolute', top: 40, right: 20, zIndex: 2 }} onPress={() => setModalVisible(false)}>
+            <TouchableOpacity style={{ position: 'absolute', top: 40, right: 20 }} onPress={() => setModalVisible(false)}>
               <Icon name="close" size={32} color="#fff" />
             </TouchableOpacity>
-            <Image
-              source={profile.image}
-              style={{ width: 320, height: 400, borderRadius: 20, resizeMode: 'cover', backgroundColor: '#fff' }}
-            />
+            <Image source={profile.image} style={{ width: 320, height: 400, borderRadius: 20, resizeMode: 'cover', backgroundColor: '#fff' }} />
           </View>
         </Modal>
+
         <Text style={styles.profileName}>{profile.name}</Text>
         <Text style={styles.profileEmail}>{profile.email}</Text>
       </View>
 
       <Text style={styles.sectionTitle}>Account Settings</Text>
-      {
-        accountSettings.map((item, index) => (
-          <MenuItem key={index} label={item.label} icon={item.icon} screen={item.screen} />
-        ))
-      }
+      {accountSettings.map((item, index) => (
+        <MenuItem key={index} label={item.label} icon={item.icon} screen={item.screen} />
+      ))}
 
       <Text style={styles.sectionTitle}>My Activity</Text>
-      {
-        myActivity.map((item, index) => (
-          <MenuItem key={index} label={item.label} icon={item.icon} screen={item.screen} />
-        ))
-      }
+      {myActivity.map((item, index) => (
+        <MenuItem key={index} label={item.label} icon={item.icon} screen={item.screen} />
+      ))}
 
       <Text style={styles.sectionTitle}>Feedback & Information</Text>
-      {
-        feedbackInfo.map((item, index) => (
-          <MenuItem key={index} label={item.label} icon={item.icon} screen={item.screen} />
-        ))
-      }
+      {feedbackInfo.map((item, index) => (
+        <MenuItem key={index} label={item.label} icon={item.icon} screen={item.screen} />
+      ))}
 
       <Text style={styles.sectionTitle}>Other</Text>
-      {
-        otherSections.map((item, index) => (
-          <MenuItem key={index} label={item.label} icon={item.icon} screen={item.screen} />
-        ))
-      }
+      {otherSections.map((item, index) => (
+        <MenuItem key={index} label={item.label} icon={item.icon} screen={item.screen} />
+      ))}
 
-      <TouchableOpacity style={styles.logout}
-        onPress={() => navigation.replace('SignInScreen')}
-      >
+      <TouchableOpacity style={styles.logout} onPress={() => navigation.replace('SignInScreen')}>
         <Text style={styles.logoutText}>Log Out</Text>
       </TouchableOpacity>
     </ScrollView>

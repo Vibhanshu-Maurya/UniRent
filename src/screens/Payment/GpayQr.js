@@ -1,3 +1,4 @@
+// GpayQr.js
 import React, { useState } from 'react';
 import {
   View,
@@ -5,26 +6,27 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Alert,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-const GpayQr = ({ route }) => {
-  const { roomPrice } = route.params;
-  const [loading, setLoading] = useState(false);
+const GpayQr = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { roomPrice } = route.params || {};
+
+  const [loading, setLoading] = useState(false);
 
   const handleConfirmPayment = () => {
     setLoading(true);
 
+    // Simulate payment confirmation delay
     setTimeout(() => {
       setLoading(false);
-      Alert.alert('', 'Payment Successful');
-      navigation.navigate('PaymentSuccessfulScreen', {
-        roomPrice, // Optional: Pass data to success screen
-      });
-    }, 3000);
+      Alert.alert('Success', 'Payment confirmed!');
+      navigation.replace('PaymentSuccessfulScreen');
+    }, 2000);
   };
 
   return (
@@ -69,10 +71,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderWidth: 2,
     borderColor: '#ddd',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
     elevation: 5,
   },
   amount: {

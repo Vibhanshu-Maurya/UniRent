@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, ActivityIndicator, Linking, Platform } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  Alert,
+  ActivityIndicator,
+  Linking,
+  Platform
+} from 'react-native';
 import * as Location from 'expo-location';
 
 const LocationScreen = () => {
@@ -12,18 +22,28 @@ const LocationScreen = () => {
       Alert.alert('Input Required', 'Please enter a location name.');
       return;
     }
+
     setLoading(true);
     try {
+      // Request permission to access location
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission Denied', 'Permission to access location was denied.');
+        setLoading(false);
+        return;
+      }
+
       // Geocode the location name
       const geocode = await Location.geocodeAsync(searchText);
-      if (geocode.length === 0) {
+      if (!geocode || geocode.length === 0) {
         Alert.alert('Not Found', 'No coordinates found for this location.');
         setLocation(null);
       } else {
         setLocation(geocode[0]);
       }
     } catch (error) {
-      Alert.alert('Error', error.message);
+      console.log('Geocoding Error:', error);
+      Alert.alert('Error', error.message || 'An unexpected error occurred.');
     } finally {
       setLoading(false);
     }
@@ -37,7 +57,7 @@ const LocationScreen = () => {
     });
     Linking.openURL(url);
   };
-  
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Room Service Location</Text>
@@ -48,13 +68,15 @@ const LocationScreen = () => {
         onChangeText={setSearchText}
       />
       <Button title="Search" onPress={handleSearch} />
+
       {loading && <ActivityIndicator size="large" color="#007AFF" style={{ marginTop: 20 }} />}
+
       {location && (
         <View style={styles.resultBox}>
           <Text style={styles.text}>Latitude: {location.latitude}</Text>
           <Text style={styles.text}>Longitude: {location.longitude}</Text>
           <Text
-            style={[styles.text, { color: '#007AFF', marginTop: 10, textDecorationLine: 'underline' }]}
+            style={[styles.text, styles.link]}
             onPress={() => openInMaps(location.latitude, location.longitude)}
           >
             View on Map
@@ -96,5 +118,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+  },
+  link: {
+    color: '#007AFF',
+    marginTop: 10,
+    textDecorationLine: 'underline',
   },
 });

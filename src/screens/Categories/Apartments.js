@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const apartments = [
   {
@@ -39,14 +40,23 @@ const apartments = [
   },
 ];
 
-const ApartmentCard = ({ apartment }) => (
+const ApartmentCard = ({ apartment, navigation }) => (
   <View style={styles.card}>
     <Image source={apartment.image} style={styles.image} />
     <View style={styles.infoContainer}>
       <Text style={styles.title}>{apartment.title}</Text>
       <Text style={styles.location}>{apartment.location}</Text>
       <Text style={styles.price}>{apartment.price}</Text>
-      <TouchableOpacity style={styles.bookBtn}>
+      <TouchableOpacity
+        style={styles.bookBtn}
+       onPress={() => navigation.navigate('PaymentScreen', {
+                // roomPrice,
+                // roomTitle,
+                // roomImage,
+                // userId, // pass userId
+                // roomId, // pass roomId
+              })}
+      >
         <Text style={styles.bookBtnText}>Book Now</Text>
       </TouchableOpacity>
     </View>
@@ -54,12 +64,13 @@ const ApartmentCard = ({ apartment }) => (
 );
 
 const ApartmentsScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <FlatList
         data={apartments}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <ApartmentCard apartment={item} />}
+        renderItem={({ item }) => <ApartmentCard apartment={item} navigation={navigation} />}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingVertical: 16 }}
       />

@@ -16,14 +16,13 @@ const PaymentSuccessfulScreen = () => {
       </Text>
       <TouchableOpacity 
         style={styles.button} 
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.replace('MainScreen')}
       >
         <Text style={styles.buttonText}>Back to Home</Text>
       </TouchableOpacity>
     </View>
   );
 };
-
 export default PaymentSuccessfulScreen;
 
 const styles = StyleSheet.create({

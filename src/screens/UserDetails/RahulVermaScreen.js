@@ -4,10 +4,10 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 const RahulVermaScreen = () => (
   <View style={styles.container}>
     <Image
-      source={{ uri: 'https://randomuser.me/api/portraits/men/85.jpg' }}
-      style={styles.avatar}
+          source={require('../../../assets/SystemImages/ad.jpg')}
+          style={styles.avatar}
     />
-    <Text style={styles.name}>Rahul Verma</Text>
+    <Text style={styles.name}>Aditya Maurya</Text>
     <Text style={styles.title}>🏆 Top User</Text>
     <Text style={styles.stats}>Offers Completed: <Text style={styles.bold}>156</Text></Text>
     <Text style={styles.stats}>User Rating: <Text style={styles.bold}>5.0 ★</Text></Text>
@@ -16,7 +16,7 @@ const RahulVermaScreen = () => (
       <Text style={styles.badge}>Superhost</Text>
     </View>
     <Text style={styles.bio}>
-      Rahul Verma is a dedicated host, praised for his reliability and friendly approach. He has consistently provided top-notch experiences for his guests across India.
+      Aditya Maurya is a dedicated host, praised for his reliability and friendly approach. He has consistently provided top-notch experiences for his guests across India.
     </Text>
   </View>
 );

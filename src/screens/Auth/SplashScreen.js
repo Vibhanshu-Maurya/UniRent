@@ -7,7 +7,7 @@ const Splash = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       // setIsTouchable(true);
-      navigation.replace('MainScreen');
+      navigation.replace('SignInScreen');
     }, 1000);
     return () => clearTimeout(timer); 
   }, []);

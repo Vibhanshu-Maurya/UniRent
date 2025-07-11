@@ -95,5 +95,6 @@ export const Styles = StyleSheet.create({
     textDecorationLine: 'underline',
     textDecorationColor: 'green',
     // fontWeight:00
+    fontsize: 20,
   },
 });

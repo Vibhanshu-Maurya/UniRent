@@ -7,8 +7,10 @@ import {
   Image,
   Alert,
   ActivityIndicator,
+  Modal,
+  TextInput,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const paymentMethods = [
   {
@@ -30,26 +32,57 @@ const paymentMethods = [
   },
 ];
 
-const PaymentMethodSelector = ({ roomPrice }) => {
-  const [selectedMethod, setSelectedMethod] = useState('Google Pay');
-  const [loading, setLoading] = useState(false);
+const PaymentMethodSelector = (props) => {
+  const route = useRoute();
   const navigation = useNavigation();
 
+  const {
+    userId = 1,
+    roomId = 1,
+    roomPrice = 2500,
+    roomTitle = 'Room A',
+  } = (route.params && Object.keys(route.params).length > 0
+    ? route.params
+    : props) || {};
+
+  const [selectedMethod, setSelectedMethod] = useState('Google Pay');
+  const [loading, setLoading] = useState(false);
+  const [upiModalVisible, setUpiModalVisible] = useState(false);
+  const [upiId, setUpiId] = useState('');
+
+  // Simulated booking + payment flow (no backend)
   const handlePay = () => {
+    if (loading) return;
+
     if (selectedMethod !== 'Google Pay') {
-      Alert.alert('Not Supported', 'Currently only Google Pay is supported for payment.');
+      Alert.alert('Not Supported', 'Currently only Google Pay is supported.');
       return;
     }
 
-    setLoading(true);
+    Alert.alert(
+      'Confirm Payment',
+      `Do you want to book ${roomTitle} for ₹${roomPrice.toLocaleString('en-IN')}?`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Pay',
+          onPress: () => {
+            setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      navigation.navigate('GpayQr', {
-        roomPrice,
-        methodName: selectedMethod,
-      });
-    }, 1000);
+            // Simulate async booking and payment
+            setTimeout(() => {
+              setLoading(false);
+
+              // Navigate to QR screen after payment success
+              navigation.navigate('GpayQr', {
+                bookingId: 'simulated-booking-id',
+                roomPrice,
+              });
+            }, 2000);
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -60,11 +93,13 @@ const PaymentMethodSelector = ({ roomPrice }) => {
         return (
           <TouchableOpacity
             key={method.name}
-            onPress={() => setSelectedMethod(method.name)}
-            style={[
-              styles.optionContainer,
-              isSelected && styles.selectedBorder,
-            ]}
+            onPress={() => {
+              setSelectedMethod(method.name);
+              if (method.name === 'Add new UPI ID') {
+                setUpiModalVisible(true);
+              }
+            }}
+            style={[styles.optionContainer, isSelected && styles.selectedBorder]}
           >
             <View style={styles.radioRow}>
               <View style={styles.radioCircle}>
@@ -75,7 +110,6 @@ const PaymentMethodSelector = ({ roomPrice }) => {
               {method.logo && (
                 <Image source={{ uri: method.logo }} style={styles.logo} />
               )}
-
               {method.extraText && (
                 <Text style={styles.howToText}>{method.extraText}</Text>
               )}
@@ -99,13 +133,9 @@ const PaymentMethodSelector = ({ roomPrice }) => {
                       selectedMethod !== 'Google Pay' && styles.disabledText,
                     ]}
                   >
-                    {selectedMethod === 'Google Pay' ? (
-                      <>
-                        Pay <Text style={{ fontWeight: 'bold' }}>₹{roomPrice}</Text>
-                      </>
-                    ) : (
-                      'Only Google Pay supported'
-                    )}
+                    {selectedMethod === 'Google Pay'
+                      ? `Pay ₹${roomPrice.toLocaleString('en-IN')}`
+                      : 'Only Google Pay supported'}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -113,6 +143,44 @@ const PaymentMethodSelector = ({ roomPrice }) => {
           </TouchableOpacity>
         );
       })}
+
+      <Modal
+        visible={upiModalVisible}
+        animationType="slide"
+        transparent
+        onRequestClose={() => setUpiModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text
+              style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 10 }}
+            >
+              Enter your UPI ID
+            </Text>
+            <TextInput
+              placeholder="example@upi"
+              value={upiId}
+              onChangeText={setUpiId}
+              style={styles.input}
+            />
+            <TouchableOpacity
+              onPress={() => {
+                setUpiModalVisible(false);
+                Alert.alert(
+                  'Note',
+                  'Currently UPI ID entry is just a placeholder.'
+                );
+              }}
+              style={styles.modalButton}
+            >
+              <Text style={styles.modalButtonText}>Save UPI ID</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setUpiModalVisible(false)}>
+              <Text style={{ color: 'red', marginTop: 10 }}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -186,5 +254,36 @@ const styles = StyleSheet.create({
   },
   disabledText: {
     color: '#555',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    width: '85%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 12,
+    elevation: 10,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#aaa',
+    borderRadius: 8,
+    padding: 10,
+    width: '100%',
+    marginBottom: 10,
+  },
+  modalButton: {
+    backgroundColor: '#007AFF',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  modalButtonText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });

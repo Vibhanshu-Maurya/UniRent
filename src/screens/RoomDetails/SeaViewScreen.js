@@ -21,6 +21,9 @@ const ApartmentPrayarag = () => {
   const roomPrice = 2500;
   const roomTitle = "Apartment, Prayagraj";
   const roomImage = royalVillaImages[0];
+  // TODO: Replace with real IDs from your app's user/session and room DB
+  const userId = 1; // <-- Make sure this user exists in your MySQL users table
+  const roomId = 1; // <-- Make sure this room exists in your MySQL rooms table
 
   return (
     <ScrollView>
@@ -91,6 +94,8 @@ const ApartmentPrayarag = () => {
                 roomPrice,
                 roomTitle,
                 roomImage,
+                userId, // pass userId
+                roomId, // pass roomId
               })}
             >
               <Text style={styles.buttonText}>Book Now</Text>

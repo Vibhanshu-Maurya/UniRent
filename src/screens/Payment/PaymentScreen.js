@@ -1,23 +1,29 @@
+// PaymentScreen.js
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-// import PaymentMethodSelector from '../components/PaymentMethodSelector'; // Adjust the path if needed
-import PaymentMethodSelector from './PaymentMethodSelector'; // Adjust the path if needed
+import PaymentMethodSelector from './PaymentMethodSelector'; // Adjust path as needed
 
 const PaymentScreen = () => {
   const route = useRoute();
-  const { roomPrice, roomTitle, roomImage } = route.params || {};
+  // Provide default values to avoid undefined errors
+  const { roomPrice = 2500, roomTitle = "Room A", roomImage } = route.params || {};
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.heading}>Confirm Your Booking</Text>
 
-      <Image source={{ uri: roomImage }} style={styles.image} />
+      {roomImage ? (
+        <Image source={{ uri: roomImage }} style={styles.image} />
+      ) : null}
 
       <Text style={styles.title}>{roomTitle}</Text>
       <Text style={styles.price}>Price: ₹{roomPrice}</Text>
 
-      <PaymentMethodSelector roomPrice={roomPrice} />
+      <PaymentMethodSelector
+        roomPrice={roomPrice}
+        roomTitle={roomTitle}
+      />
     </ScrollView>
   );
 };

@@ -157,7 +157,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     marginTop: 8,
-    marginLeft: 5,
+    // marginLeft: 5,
     // alignItems: 'center',
   },
   offers: {
@@ -223,5 +223,6 @@ export const styles = StyleSheet.create({
     color: '#3A47BD',
     fontWeight: 'bold',
     fontSize: 13,
+    // marginLeft: ,
   },
 });
